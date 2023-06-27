@@ -107,16 +107,25 @@ section ul li {
     margin-bottom: 8px;
 }
 
-section ul li * {
-    background-color: #dddddd;
-    border: 1px black solid;
-    
-}
-
 section ul li span:first-child {
     flex-grow: 1;
+    background-color: #dddddd;
+    border: 1px black solid;
 }
 
 section ul li span:nth-child(2) {
     flex-basis: content;
+    background-color: #dddddd;
+    padding-left: 8px;
+    padding-right: 8px;
+    border: 1px black solid;
+}
+
+section ul li button:nth-child(3) {
+    flex-basis: content;
+
+    padding-left: 8px;
+    padding-right: 8px;
+    margin: 0;
+    text-align: center;
 }
