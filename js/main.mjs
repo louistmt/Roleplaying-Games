@@ -8,39 +8,10 @@ import Title from "./components/Title.mjs";
 const main = document.querySelector("main");
 const buttonSection = document.querySelector("section");
 
-document.addEventListener("keypress", () => addEventListener("beforeunload", warnUnsavedChanges));
-
-if (localStorage.getItem("saved-dungeon") !== null) {
-    const data = JSON.parse(localStorage.getItem("saved-dungeon"));
-    const [title, sections] = data;
-
-    main.appendChild(Title(title));
-
-    for (let section of sections) {
-        const [sectionType, ...sectionData] = section;
-
-        console.log(sectionData);
-
-        switch (sectionType) {
-            case "text-section":
-                main.appendChild(TextSection(...sectionData));
-                break;
-            case "random-list-picker":
-                main.appendChild(RandomListPicker(...sectionData));
-                break;
-            case "random-number-picker":
-                main.appendChild(RandomNumberPicker(...sectionData));
-                break;
-            case "weighted-list-picker":
-                main.appendChild(WeightedListPicker(...sectionData));
-                break;
-            default:
-                console.log("Unknown type:", sectionType, sectionData);
-        }
-    }
-} else {
-    main.appendChild(Title("Dungeon Run"));
-}
+document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") load();
+    if (document.visibilityState === "hidden") save(); 
+});
 
 setInterval(save, 10000);
 
@@ -64,7 +35,13 @@ buttonSection.appendChild(Button("Clear All", () => {
     main.appendChild(Title("Dungeon Run"));
 }));
 
+//
+// Functions
+//
 
+/**
+ * Save website state
+ */
 function save() {
     const [title, ...sections] = main.children;
     const data = []
@@ -97,7 +74,39 @@ function save() {
     console.log("Dungeon run saved");
 }
 
-function warnUnsavedChanges(event) {
-    event.preventDefault();
-    return (event.returnValue = "");
+/**
+ * Load website state
+ */
+function load() {
+    if (localStorage.getItem("saved-dungeon") !== null) {
+        const data = JSON.parse(localStorage.getItem("saved-dungeon"));
+        const [title, sections] = data;
+    
+        main.appendChild(Title(title));
+    
+        for (let section of sections) {
+            const [sectionType, ...sectionData] = section;
+    
+            console.log(sectionData);
+    
+            switch (sectionType) {
+                case "text-section":
+                    main.appendChild(TextSection(...sectionData));
+                    break;
+                case "random-list-picker":
+                    main.appendChild(RandomListPicker(...sectionData));
+                    break;
+                case "random-number-picker":
+                    main.appendChild(RandomNumberPicker(...sectionData));
+                    break;
+                case "weighted-list-picker":
+                    main.appendChild(WeightedListPicker(...sectionData));
+                    break;
+                default:
+                    console.log("Unknown type:", sectionType, sectionData);
+            }
+        }
+    } else {
+        main.appendChild(Title("Dungeon Run"));
+    }
 }
