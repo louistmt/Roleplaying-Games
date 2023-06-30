@@ -8,13 +8,16 @@ import Title from "./components/Title.mjs";
 const main = document.querySelector("main");
 const buttonSection = document.querySelector("section");
 
+// Add event listeners to save and load page state
 document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "visible") load();
     if (document.visibilityState === "hidden") save(); 
 });
 
+// Auto save in intervals of 10 seconds just in case
 setInterval(save, 10000);
 
+// Attach events to the buttons
 buttonSection.appendChild(Button("Save Run", save));
 buttonSection.appendChild(Button("Add Section Text", () => {
     main.appendChild(TextSection());
@@ -70,7 +73,6 @@ function save() {
     }
 
     localStorage.setItem("saved-dungeon", JSON.stringify(data));
-    removeEventListener("beforeunload", warnUnsavedChanges);
     console.log("Dungeon run saved");
 }
 
@@ -78,6 +80,12 @@ function save() {
  * Load website state
  */
 function load() {
+
+    // Clear the children just in case
+    while (main.children.length > 0) {
+        main.removeChild(main.firstChild);
+    }
+
     if (localStorage.getItem("saved-dungeon") !== null) {
         const data = JSON.parse(localStorage.getItem("saved-dungeon"));
         const [title, sections] = data;
