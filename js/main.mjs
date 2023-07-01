@@ -32,6 +32,8 @@ buttonSection.appendChild(Button("Add Weighted Picker", () => {
     main.appendChild(WeightedListPicker());
 }));
 buttonSection.appendChild(Button("Clear All", () => {
+    localStorage.removeItem("saved-dungeon");
+
     for (let child of [...main.children]) {
         main.removeChild(child);
     }
