@@ -38,6 +38,8 @@ buttonSection.appendChild(Button("Clear All", () => {
     main.appendChild(Title("Dungeon Run"));
 }));
 
+load();
+
 //
 // Functions
 //
@@ -46,6 +48,8 @@ buttonSection.appendChild(Button("Clear All", () => {
  * Save website state
  */
 function save() {
+    console.log("Saving...");
+
     const [title, ...sections] = main.children;
     const data = []
     const sectionData = []
@@ -80,6 +84,7 @@ function save() {
  * Load website state
  */
 function load() {
+    console.log("Loading...");
 
     // Clear the children just in case
     while (main.children.length > 0) {
