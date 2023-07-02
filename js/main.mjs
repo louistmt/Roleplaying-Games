@@ -124,4 +124,6 @@ function load() {
     } else {
         main.appendChild(Title("Dungeon Run"));
     }
+
+    console.log("Loaded");
 }
