@@ -4,6 +4,7 @@ import WeightedListPicker, {serialize as weightedPickerSerialize} from "./compon
 import Button from "./components/Button.mjs";
 import TextSection, {serialize as textSectionSerialize} from "./components/TextSection.mjs";
 import Title from "./components/Title.mjs";
+import { downloadTextFile, requesTextFile } from "./utils.mjs";
 
 const main = document.querySelector("main");
 const buttonSection = document.querySelector("section");
@@ -30,6 +31,17 @@ buttonSection.appendChild(Button("Add List Picker", () => {
 }));
 buttonSection.appendChild(Button("Add Weighted Picker", () => {
     main.appendChild(WeightedListPicker());
+}));
+buttonSection.appendChild(Button("Import File...", async () => {
+    const data = await requesTextFile();
+    localStorage.setItem("saved-dungeon", data);
+    load();
+}));
+buttonSection.appendChild(Button("Export File...", async () => {
+    save();
+    const data = localStorage.getItem("saved-dungeon");
+    const title = JSON.parse(data)[0];
+    await downloadTextFile(`${title}.txt`, data);
 }));
 buttonSection.appendChild(Button("Clear All", () => {
     localStorage.removeItem("saved-dungeon");
