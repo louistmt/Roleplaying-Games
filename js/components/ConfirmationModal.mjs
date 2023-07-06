@@ -16,12 +16,12 @@ export default function ConfirmationModal(title, question, yesCallback, noCallba
     const yesButton = Button("Yes", () => {
         hide(); 
         yesCallback();
-        base.parentElement.remove(base);
+        base.parentElement.removeChild(base);
     });
     const noButton = Button("No", () => {
         hide(); 
         noCallback();
-        base.parentElement.remove(base);
+        base.parentElement.removeChild(base);
     });
 
     titleElement.innerText = title;

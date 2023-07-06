@@ -1,10 +1,10 @@
-dialog.modal {
+dialog.modal[open] {
     margin-top: 30vh;
     border: 1px solid black;
 }
 
 /*Confirmation Modal*/
-dialog.modal.confirmation {
+dialog.modal.confirmation[open] {
     display: grid;
     padding: 32px;
 
