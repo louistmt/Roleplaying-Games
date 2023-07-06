@@ -18,9 +18,7 @@ document.addEventListener("visibilitychange", () => {
 });
 
 // Auto save in intervals of 10 seconds just in case
-setInterval(save, 10000);
-
-// Add the modals after the 
+setInterval(save, 10000); 
 
 // Attach events to the buttons
 buttonSection.appendChild(Button("Save Run", save));
