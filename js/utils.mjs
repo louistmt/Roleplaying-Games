@@ -1,7 +1,7 @@
 /**
  * @returns {Promise<string>}
  */
-export function requesTextFile() {
+export function requestTextFile() {
     return new Promise((resolve, reject) => {
         const input = document.createElement("input");
         input.type = "file";
