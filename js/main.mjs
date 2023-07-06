@@ -4,7 +4,7 @@ import WeightedListPicker, { serialize as weightedPickerSerialize } from "./comp
 import Button from "./components/Button.mjs";
 import TextSection, { serialize as textSectionSerialize } from "./components/TextSection.mjs";
 import Title from "./components/Title.mjs";
-import { downloadTextFile, requesTextFile } from "./utils.mjs";
+import { downloadTextFile, requestTextFile } from "./utils.mjs";
 import ConfirmationModal from "./components/ConfirmationModal.mjs";
 
 const body = document.body;
@@ -36,10 +36,19 @@ buttonSection.appendChild(Button("Add List Picker", () => {
 buttonSection.appendChild(Button("Add Weighted Picker", () => {
     main.appendChild(WeightedListPicker());
 }));
-buttonSection.appendChild(Button("Import File...", async () => {
-    const data = await requesTextFile();
-    localStorage.setItem("saved-dungeon", data);
-    load();
+buttonSection.appendChild(Button("Import File...", () => {
+    const [modal, show] = ConfirmationModal(
+        "Import File",
+        "Are you sure you wish to import the file? This will override the current run",
+        async () => {
+            const data = await requestTextFile();
+            localStorage.setItem("saved-dungeon", data);
+            load();
+        }
+    )
+
+    body.appendChild(modal)
+    show()
 }));
 buttonSection.appendChild(Button("Export File...", async () => {
     save();
