@@ -1,22 +1,26 @@
-import RandomListPicker, {serialize as listPickerSerialize} from "./components/RandomListPicker.mjs";
-import RandomNumberPicker, {serialize as numberPickerSerialize} from "./components/RandomNumberPicker.mjs";
-import WeightedListPicker, {serialize as weightedPickerSerialize} from "./components/WeightedListPicker.mjs";
+import RandomListPicker, { serialize as listPickerSerialize } from "./components/RandomListPicker.mjs";
+import RandomNumberPicker, { serialize as numberPickerSerialize } from "./components/RandomNumberPicker.mjs";
+import WeightedListPicker, { serialize as weightedPickerSerialize } from "./components/WeightedListPicker.mjs";
 import Button from "./components/Button.mjs";
-import TextSection, {serialize as textSectionSerialize} from "./components/TextSection.mjs";
+import TextSection, { serialize as textSectionSerialize } from "./components/TextSection.mjs";
 import Title from "./components/Title.mjs";
 import { downloadTextFile, requesTextFile } from "./utils.mjs";
+import ConfirmationModal from "./components/ConfirmationModal.mjs";
 
+const body = document.body;
 const main = document.querySelector("main");
 const buttonSection = document.querySelector("section");
 
 // Add event listeners to save and load page state
 document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "visible") load();
-    if (document.visibilityState === "hidden") save(); 
+    if (document.visibilityState === "hidden") save();
 });
 
 // Auto save in intervals of 10 seconds just in case
 setInterval(save, 10000);
+
+// Add the modals after the 
 
 // Attach events to the buttons
 buttonSection.appendChild(Button("Save Run", save));
@@ -44,12 +48,21 @@ buttonSection.appendChild(Button("Export File...", async () => {
     await downloadTextFile(`${title}.txt`, data);
 }));
 buttonSection.appendChild(Button("Clear All", () => {
-    localStorage.removeItem("saved-dungeon");
+    const [modal, show] = ConfirmationModal(
+        "Clear All",
+        "Are you sure you want to clear everything. This action is irreversible",
+        () => {
+            localStorage.removeItem("saved-dungeon");
 
-    for (let child of [...main.children]) {
-        main.removeChild(child);
-    }
-    main.appendChild(Title("Dungeon Run"));
+            for (let child of [...main.children]) {
+                main.removeChild(child);
+            }
+            main.appendChild(Title("Dungeon Run"));
+        }
+    );
+
+    body.appendChild(modal);
+    show();
 }));
 
 load();
@@ -108,14 +121,14 @@ function load() {
     if (localStorage.getItem("saved-dungeon") !== null) {
         const data = JSON.parse(localStorage.getItem("saved-dungeon"));
         const [title, sections] = data;
-    
+
         main.appendChild(Title(title));
-    
+
         for (let section of sections) {
             const [sectionType, ...sectionData] = section;
-    
+
             console.log(sectionData);
-    
+
             switch (sectionType) {
                 case "text-section":
                     main.appendChild(TextSection(...sectionData));
