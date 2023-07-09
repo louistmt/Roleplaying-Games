@@ -1,11 +1,17 @@
 dialog.modal[open] {
+    display: grid;
+    place-content: center;
+    box-sizing: border-box;
+
     margin-top: 30vh;
+    margin-left: 32px;
+    margin-right: 32px;
+    width: calc(100vw - 64px);
     border: 1px solid black;
 }
 
 /*Confirmation Modal*/
 dialog.modal.confirmation[open] {
-    display: grid;
     padding: 32px;
 
     grid-template-areas: 
