@@ -1,5 +1,5 @@
 import Modal from "./Modal.mjs";
-import Button from "./Button.mjs";
+import Button from "../base/Button.mjs";
 
 /**
  * 

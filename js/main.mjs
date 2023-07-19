@@ -1,11 +1,11 @@
-import RandomListPicker, { serialize as listPickerSerialize } from "./components/RandomListPicker.mjs";
-import RandomNumberPicker, { serialize as numberPickerSerialize } from "./components/RandomNumberPicker.mjs";
-import WeightedListPicker, { serialize as weightedPickerSerialize } from "./components/WeightedListPicker.mjs";
-import Button from "./components/Button.mjs";
-import TextSection, { serialize as textSectionSerialize } from "./components/TextSection.mjs";
+import RandomListPicker, { serialize as listPickerSerialize } from "./components/sections/RandomListPicker.mjs";
+import RandomNumberPicker, { serialize as numberPickerSerialize } from "./components/sections/RandomNumberPicker.mjs";
+import WeightedListPicker, { serialize as weightedPickerSerialize } from "./components/sections/WeightedListPicker.mjs";
+import Button from "./components/base/Button.mjs";
+import TextSection, { serialize as textSectionSerialize } from "./components/sections/TextSection.mjs";
 import Title from "./components/Title.mjs";
 import { downloadTextFile, requestTextFile } from "./utils.mjs";
-import ConfirmationModal from "./components/ConfirmationModal.mjs";
+import ConfirmationModal from "./components/modals/ConfirmationModal.mjs";
 
 const body = document.body;
 const main = document.querySelector("main");

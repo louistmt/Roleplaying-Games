@@ -1,6 +1,6 @@
 import InputNumber, { getNumber } from "./InputNumber.mjs";
-import Button from "./Button.mjs";
-import Paragraph from "./Paragraph.mjs";
+import Button from "../base/Button.mjs";
+import Paragraph from "../base/Paragraph.mjs";
 import SectionTitle from "./SectionTitle.mjs";
 
 export default function RandomNumberPicker(title = "Random Number Picker", min = 0, max = 10) {
