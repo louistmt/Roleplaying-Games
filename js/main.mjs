@@ -74,9 +74,6 @@ buttonSection.appendChild(Button("Clear All", () => {
 
 load();
 
-// const dialog = document.querySelector("dialog.modal");
-// dialog.showModal();
-
 //
 // Functions
 //
