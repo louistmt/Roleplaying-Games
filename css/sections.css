@@ -1,0 +1,115 @@
+/* Base Section */
+section {
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    border:  1px black solid;
+}
+
+section h2 {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-left: 8px;
+    margin-right: 8px;
+    border: 1px black solid;
+}
+
+section p {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-left: 8px;
+    margin-right: 8px;
+    border: 1px gray solid;
+
+    color: #666666;
+    white-space: pre-line;
+}
+
+section p[contenteditable="true"] {
+    color: black;
+    border: 1px black solid;
+}
+
+section button {
+    display: block;
+
+    width: calc(100% - 16px);
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-left: 8px;
+    margin-right: 8px;
+    padding: 0;
+
+    text-align: center;
+}
+
+/* Section input container */
+section div.input-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    column-gap: 8px;
+
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+section div.input-container span {
+    flex-basis: content;
+}
+
+section div.input-container input {
+    flex-grow: 1;
+    padding: 0;
+}
+
+/*Section list*/
+section ul {
+    border: 1px black solid;
+
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-left: 8px;
+    margin-right: 8px;
+    padding: 0;
+}
+
+section ul li {
+    list-style: none;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    column-gap: 8px;
+}
+
+section ul li {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+section ul li span:first-child {
+    flex-grow: 1;
+    background-color: #dddddd;
+    border: 1px black solid;
+}
+
+section ul li span:nth-child(2) {
+    flex-basis: content;
+    background-color: #dddddd;
+    padding-left: 8px;
+    padding-right: 8px;
+    border: 1px black solid;
+}
+
+section ul li button:nth-child(3) {
+    flex-basis: content;
+
+    padding-left: 8px;
+    padding-right: 8px;
+    margin: 0;
+    text-align: center;
+}
