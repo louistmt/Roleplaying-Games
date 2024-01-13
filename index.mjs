@@ -1,8 +1,10 @@
 import { Menu } from "./js/components/Menu.mjs";
 
+
+
 document.body.append(
     Menu([
-        ["Old Page", "/old-page/index.html",],
-        ["Ascii Map Editor", "/pages/ascii-map-editor/page.html"]
+        ["Old Page", (new URL("/old-page/index.html", window.location.href)).href],
+        ["Ascii Map Editor", (new URL("/pages/ascii-map-editor/page.html", window.location.href)).href]
     ])
 )
