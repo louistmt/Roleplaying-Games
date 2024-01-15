@@ -17,6 +17,11 @@ const sizeInput1 = control1.children[2]
 const control2 = document.getElementById("control_2")
 const sizeInput2 = control2.children[2]
 
+function resetZIndex() {
+    img1.style.zIndex = "auto"
+    img2.style.zIndex = "auto"
+}
+
 function adjustSizes() {
     console.log("hello")
     const size1 = parseInt(sizeInput1.innerText)
@@ -60,8 +65,10 @@ function mountControls(img, control) {
 
     img.addEventListener("mousedown", (e) => {
         const box = img.getBoundingClientRect()
-        isDragged = true
+        resetZIndex()
         img.style.zIndex = "1"
+
+        isDragged = true
         offsetBottom = containerBottom - box.bottom
         offsetLeft = box.left - containerLeft
         x = e.clientX
@@ -77,7 +84,6 @@ function mountControls(img, control) {
 
     img.addEventListener("mouseup", (e) => {
         isDragged = false
-        img.style.zIndex = "auto"
     })
 
     img.addEventListener("touchstart", (e) => {
@@ -85,8 +91,10 @@ function mountControls(img, control) {
         if (touchId === undefined) {
             const box = img.getBoundingClientRect()
             const touch = e.changedTouches[0]
-            touchId = touch.identifier
+            resetZIndex()
             img.style.zIndex = "1"
+
+            touchId = touch.identifier
             offsetBottom = containerBottom - box.bottom
             offsetLeft = box.left - containerLeft
             x = touch.clientX
@@ -107,7 +115,6 @@ function mountControls(img, control) {
         const targetTouch = [...e.changedTouches].find((touch) => touch.identifier === touchId)
         if (targetTouch !== undefined) {
             touchId = undefined
-            img.style.zIndex = "auto"
         }
     })
 
@@ -115,7 +122,6 @@ function mountControls(img, control) {
         const targetTouch = [...e.changedTouches].find((touch) => touch.identifier === touchId)
         if (targetTouch !== undefined) {
             touchId = undefined
-            img.style.zIndex = "auto"
         }
     })
 
