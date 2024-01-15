@@ -62,7 +62,7 @@ function mountControls(img, control) {
         const box = img.getBoundingClientRect()
         isDragged = true
         img.style.zIndex = "1"
-        offsetBottom = box.bottom - containerBottom
+        offsetBottom = containerBottom - box.bottom
         offsetLeft = box.left - containerLeft
         x = e.clientX
         y = e.clientY
@@ -87,7 +87,7 @@ function mountControls(img, control) {
             const touch = e.changedTouches[0]
             touchId = touch.identifier
             img.style.zIndex = "1"
-            offsetBottom = box.bottom - containerBottom
+            offsetBottom = containerBottom - box.bottom
             offsetLeft = box.left - containerLeft
             x = touch.clientX
             y = touch.clientY
